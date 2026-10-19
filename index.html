@@ -179,7 +179,6 @@
       flex: 1;
     }
 
-    /* Grid Navigation Drawer/Modal */
     .grid-toggle-btn {
       background-color: #f1f5f9;
       color: var(--text);
@@ -364,36 +363,288 @@
   const TOTAL_SOAL_DIUJI = 50;
   const WAKTU_KUIS_MENIT = 60;
 
-  // DATA SISWA (Ganti / Tambahkan Data Utuh di Sini)
+  // DATA SISWA LENGKAP KELAS 9D - 9J
   const studentData = [
-    { kelas: "7A", nama: "Ahmad Fauzi", nilaiAwal: 65 },
-    { kelas: "7A", nama: "Budi Santoso", nilaiAwal: 78 },
-    { kelas: "7B", nama: "Citra Dewi", nilaiAwal: 85 } // Contoh siswa yang sudah LULUS
+    // KELAS 9D
+    { kelas: "9D", nama: "ADAM AULIAUR RAHMAN", nilaiAwal: 40 },
+    { kelas: "9D", nama: "ADRIAN DWI ARDIANSYAH", nilaiAwal: 20 },
+    { kelas: "9D", nama: "AELSA ALMAS SAFITRI", nilaiAwal: 0 },
+    { kelas: "9D", nama: "ALFAIR RAZKY QURAISYI", nilaiAwal: 0 },
+    { kelas: "9D", nama: "ALVIAN KASYA MUKHTAR", nilaiAwal: 48 },
+    { kelas: "9D", nama: "ASRIEL MOCHTAR", nilaiAwal: 47 },
+    { kelas: "9D", nama: "BUNGA VALENTINA ERVA", nilaiAwal: 62 },
+    { kelas: "9D", nama: "FAREL AL-AKSYA", nilaiAwal: 40 },
+    { kelas: "9D", nama: "FATIH AZZAHRA", nilaiAwal: 48 },
+    { kelas: "9D", nama: "FAVIAN VALAS ELFRIED", nilaiAwal: 71 },
+    { kelas: "9D", nama: "IKAN PUTRA RAYMUND", nilaiAwal: 45 },
+    { kelas: "9D", nama: "MUHAMMAD ASKY ILHAM", nilaiAwal: 20 },
+    { kelas: "9D", nama: "MUHAMMAD AZKA AFIF", nilaiAwal: 0 },
+    { kelas: "9D", nama: "MUHAMMAD EL FABIAN", nilaiAwal: 19 },
+    { kelas: "9D", nama: "MUHAMMAD FADIL ERDI", nilaiAwal: 47 },
+    { kelas: "9D", nama: "MUHAMMAD GATHFAN", nilaiAwal: 0 },
+    { kelas: "9D", nama: "NABIL AL FARIZI", nilaiAwal: 24 },
+    { kelas: "9D", nama: "NURUL AZIZAH", nilaiAwal: 48 },
+    { kelas: "9D", nama: "RAFA ISA", nilaiAwal: 45 },
+    { kelas: "9D", nama: "RANGGA RIAN RAFARD", nilaiAwal: 40 },
+    { kelas: "9D", nama: "REYHAN ASHIF FAHD", nilaiAwal: 47 },
+    { kelas: "9D", nama: "SAYID ABDUL RASYID", nilaiAwal: 64 },
+    { kelas: "9D", nama: "TUTUT YULIANING", nilaiAwal: 47 },
+    { kelas: "9D", nama: "ZIEDAN MAULANA AKBAR", nilaiAwal: 60 },
+    { kelas: "9D", nama: "ZIA PASHA LUCIA", nilaiAwal: 65 },
+
+    // KELAS 9E
+    { kelas: "9E", nama: "ABIZAR AL GIFFARI", nilaiAwal: 22 },
+    { kelas: "9E", nama: "ADZKIA CINTIA M.V", nilaiAwal: 58 },
+    { kelas: "9E", nama: "AULIA NURUL JANNAH", nilaiAwal: 65 },
+    { kelas: "9E", nama: "AVIAN", nilaiAwal: 60 },
+    { kelas: "9E", nama: "AFI SARIFAH MAULIDA", nilaiAwal: 65 },
+    { kelas: "9E", nama: "ANNISA DAMAYANTI", nilaiAwal: 47 },
+    { kelas: "9E", nama: "ARBA MAHARDIKA", nilaiAwal: 47 },
+    { kelas: "9E", nama: "ARDAN DIAN FIKRIANSYAH", nilaiAwal: 38 },
+    { kelas: "9E", nama: "DAVID MAULANA", nilaiAwal: 22 },
+    { kelas: "9E", nama: "DIEDO RAHMATULLAH", nilaiAwal: 0 },
+    { kelas: "9E", nama: "ERWIN FERDIANSYAH", nilaiAwal: 45 },
+    { kelas: "9E", nama: "FITRI RAMADHANI", nilaiAwal: 50 },
+    { kelas: "9E", nama: "HABIBIE ADHI PRASETYA", nilaiAwal: 20 },
+    { kelas: "9E", nama: "HOERIA IQLIMA HERMA", nilaiAwal: 35 },
+    { kelas: "9E", nama: "IKHLAS BUMI RAMADHAN", nilaiAwal: 70 },
+    { kelas: "9E", nama: "M. FAHD TRIAHMADI", nilaiAwal: 48 },
+    { kelas: "9E", nama: "MUHAMMAD AL FATHIR", nilaiAwal: 22 },
+    { kelas: "9E", nama: "NABILA HERMAWAN", nilaiAwal: 47 },
+    { kelas: "9E", nama: "NAJMA GINAYA PUTRI", nilaiAwal: 60 },
+    { kelas: "9E", nama: "NOVAL SIPTA PERDANA", nilaiAwal: 50 },
+    { kelas: "9E", nama: "NUR LAELATU S", nilaiAwal: 50 },
+    { kelas: "9E", nama: "NURUL SYIFA SILFIA", nilaiAwal: 50 },
+    { kelas: "9E", nama: "RIDO FERDIANSYAH", nilaiAwal: 50 },
+    { kelas: "9E", nama: "SULTAN MAHYUDI RIKSA", nilaiAwal: 45 },
+    { kelas: "9E", nama: "SULA THAQA", nilaiAwal: 40 },
+
+    // KELAS 9F
+    { kelas: "9F", nama: "AGISS ALIFIA SAPUTRI", nilaiAwal: 65 },
+    { kelas: "9F", nama: "ANANDA AULIA PUTRI", nilaiAwal: 50 },
+    { kelas: "9F", nama: "ATTAR RAISSA RADITYA", nilaiAwal: 51 },
+    { kelas: "9F", nama: "BAGAS PUTRA WAHYU P.", nilaiAwal: 71 },
+    { kelas: "9F", nama: "CINTA KHALIMATUS", nilaiAwal: 35 },
+    { kelas: "9F", nama: "DINI RIFI DEANISA", nilaiAwal: 70 },
+    { kelas: "9F", nama: "FAIZAN ARYA ANSORI", nilaiAwal: 24 },
+    { kelas: "9F", nama: "FERDIAN ADITYA PUTRA", nilaiAwal: 50 },
+    { kelas: "9F", nama: "GIDEON AZKA PRATAMA", nilaiAwal: 50 },
+    { kelas: "9F", nama: "JOVI ELVIS PRATAMA", nilaiAwal: 0 },
+    { kelas: "9F", nama: "KAILA NITYAZA AZZAHRA", nilaiAwal: 0 },
+    { kelas: "9F", nama: "KAYLAN MARDIANSYAH", nilaiAwal: 67 },
+    { kelas: "9F", nama: "MAYRA BRAYNSOFIANI", nilaiAwal: 37 },
+    { kelas: "9F", nama: "MIFTAH ALFIANSHAH", nilaiAwal: 40 },
+    { kelas: "9F", nama: "MAULANA SYAPUTRA", nilaiAwal: 40 },
+    { kelas: "9F", nama: "MUHAMAD AZIZANSYAH", nilaiAwal: 0 },
+    { kelas: "9F", nama: "MUHAMAD BINTANG P.", nilaiAwal: 50 },
+    { kelas: "9F", nama: "MUHAMAD FIKRIANSYAH", nilaiAwal: 47 },
+    { kelas: "9F", nama: "MUHAMMAD FIRMANSYAH", nilaiAwal: 45 },
+    { kelas: "9F", nama: "MUHAMMAD RAIHAN", nilaiAwal: 48 },
+    { kelas: "9F", nama: "MUHAMMAD YUSUF", nilaiAwal: 48 },
+    { kelas: "9F", nama: "NADILA CYNTHIA MARDAT", nilaiAwal: 47 },
+    { kelas: "9F", nama: "PUTRI MEI ASRI", nilaiAwal: 45 },
+    { kelas: "9F", nama: "RAFA ERDIANSYAH", nilaiAwal: 65 },
+    { kelas: "9F", nama: "REFAL MAULIDA", nilaiAwal: 45 },
+    { kelas: "9F", nama: "SATRIA RESKA FAJRI", nilaiAwal: 47 },
+    { kelas: "9F", nama: "SASKIA SAFITRI", nilaiAwal: 34 },
+    { kelas: "9F", nama: "TATA SUTRISNA", nilaiAwal: 45 },
+    { kelas: "9F", nama: "VICKY PRATAMA BUMI", nilaiAwal: 65 },
+    { kelas: "9F", nama: "VITA YULIANI", nilaiAwal: 70 },
+    { kelas: "9F", nama: "WAHYU ADIS FRIMAN", nilaiAwal: 65 },
+    { kelas: "9F", nama: "ZAHRA AULIA SEPTIANI", nilaiAwal: 65 },
+    { kelas: "9F", nama: "AHMAD FATHONI M.", nilaiAwal: 37 },
+
+    // KELAS 9G
+    { kelas: "9G", nama: "ALIFI HERDIAN PRATAMA", nilaiAwal: 0 },
+    { kelas: "9G", nama: "ANITA SHIFFA PUTRI", nilaiAwal: 0 },
+    { kelas: "9G", nama: "BINTANG RANGGAYUDA", nilaiAwal: 50 },
+    { kelas: "9G", nama: "CANTIKA REFINA FITRIANI", nilaiAwal: 0 },
+    { kelas: "9G", nama: "DAFFA FIRDAUS AL-FAIZ", nilaiAwal: 0 },
+    { kelas: "9G", nama: "DESTIA APRIEL SITA", nilaiAwal: 0 },
+    { kelas: "9G", nama: "FACHRI ALFIAN ARDIAN", nilaiAwal: 65 },
+    { kelas: "9G", nama: "FADLY AL-GIFFARI", nilaiAwal: 0 },
+    { kelas: "9G", nama: "IBRAHIM RAMADHAN S.", nilaiAwal: 65 },
+    { kelas: "9G", nama: "JUAN VALENTINO", nilaiAwal: 17 },
+    { kelas: "9G", nama: "KAILA FIRDIANA MEYLI", nilaiAwal: 35 },
+    { kelas: "9G", nama: "MAULANA SYAFE'I A.G.", nilaiAwal: 0 },
+    { kelas: "9G", nama: "MAYETA NUR FITRIANI", nilaiAwal: 71 },
+    { kelas: "9G", nama: "MUHAMAD DATA ARIS", nilaiAwal: 67 },
+    { kelas: "9G", nama: "MUHAMAD FAHDAN B.", nilaiAwal: 0 },
+    { kelas: "9G", nama: "NAJWA ALFIA FADHILAH", nilaiAwal: 65 },
+    { kelas: "9G", nama: "NATASYA FITRIANI S.", nilaiAwal: 50 },
+    { kelas: "9G", nama: "PUTRA RIZKIANSYAH", nilaiAwal: 0 },
+    { kelas: "9G", nama: "RAFA AULIA RAJES", nilaiAwal: 35 },
+    { kelas: "9G", nama: "RAFA ARDIANSYAH M.", nilaiAwal: 0 },
+    { kelas: "9G", nama: "RAISA ARTIASQI KAMAL", nilaiAwal: 51 },
+    { kelas: "9G", nama: "RAMA DIPANTARA", nilaiAwal: 0 },
+    { kelas: "9G", nama: "RITA KUSUMAWATI", nilaiAwal: 65 },
+
+    // KELAS 9H
+    { kelas: "9H", nama: "ACHMAD SETIAWAN", nilaiAwal: 51 },
+    { kelas: "9H", nama: "ADAM NURU'S ALAM", nilaiAwal: 0 },
+    { kelas: "9H", nama: "ADITYA HAMDAN", nilaiAwal: 0 },
+    { kelas: "9H", nama: "ADINDA SAKILA RANI", nilaiAwal: 31 },
+    { kelas: "9H", nama: "ALDY FAIZ FADILA", nilaiAwal: 65 },
+    { kelas: "9H", nama: "FAJRIL ABRAHAM S.", nilaiAwal: 65 },
+    { kelas: "9H", nama: "FRANSHISCO ROBINSON", nilaiAwal: 0 },
+    { kelas: "9H", nama: "IKBAL RASYID AL-ALIF", nilaiAwal: 0 },
+    { kelas: "9H", nama: "IKHSAN TIORA", nilaiAwal: 0 },
+    { kelas: "9H", nama: "KAREN DESKA ADITYA", nilaiAwal: 35 },
+    { kelas: "9H", nama: "M. FAJRA TOFI ARSAD", nilaiAwal: 71 },
+    { kelas: "9H", nama: "MUHAMAD AKBAR ARFI", nilaiAwal: 0 },
+    { kelas: "9H", nama: "MUHAMAD RIZKI FAUZI", nilaiAwal: 67 },
+    { kelas: "9H", nama: "MUHAMAD YUDISTIRA", nilaiAwal: 65 },
+    { kelas: "9H", nama: "MUHAMMAD MAULANA", nilaiAwal: 65 },
+    { kelas: "9H", nama: "NAZHMI FATIKH AHMAD", nilaiAwal: 0 },
+    { kelas: "9H", nama: "NAYLA FITRI SYAHRANI", nilaiAwal: 67 },
+    { kelas: "9H", nama: "OCTAVIANUS NICO ALAF", nilaiAwal: 65 },
+    { kelas: "9H", nama: "RAYHAN KASPURI", nilaiAwal: 51 },
+    { kelas: "9H", nama: "REZKY PRATAMA P.", nilaiAwal: 71 },
+    { kelas: "9H", nama: "RUDI ARYA ALFADLI", nilaiAwal: 51 },
+    { kelas: "9H", nama: "SEPIA MERYANA", nilaiAwal: 0 },
+    { kelas: "9H", nama: "SHEFA VANESA PUTRI", nilaiAwal: 50 },
+    { kelas: "9H", nama: "SULTAN FAWWAZ ILHAM", nilaiAwal: 50 },
+
+    // KELAS 9I
+    { kelas: "9I", nama: "ALFINA RAHMA", nilaiAwal: 0 },
+    { kelas: "9I", nama: "ANNISA ARDIANA S.", nilaiAwal: 50 },
+    { kelas: "9I", nama: "ARIZ AURELLIO", nilaiAwal: 0 },
+    { kelas: "9I", nama: "DIMAS ARDIAN", nilaiAwal: 0 },
+    { kelas: "9I", nama: "FATHAN FAKHRI NAUFAL", nilaiAwal: 34 },
+    { kelas: "9I", nama: "FINDI SHANTIKA", nilaiAwal: 60 },
+    { kelas: "9I", nama: "ILHAM SHOLIKIN", nilaiAwal: 60 },
+    { kelas: "9I", nama: "KRISTIANA AGUSTINA", nilaiAwal: 0 },
+    { kelas: "9I", nama: "MAHESWARI AURA FINI", nilaiAwal: 65 },
+    { kelas: "9I", nama: "MEIFITRIANI LUKMAN", nilaiAwal: 65 },
+    { kelas: "9I", nama: "MIRA AULIA MAYSURI", nilaiAwal: 51 },
+    { kelas: "9I", nama: "MUHAMAD AL-HASAN", nilaiAwal: 50 },
+    { kelas: "9I", nama: "MUHAMMAD AJRI FAHRI", nilaiAwal: 51 },
+    { kelas: "9I", nama: "MUHAMMAD FIKRI M.", nilaiAwal: 51 },
+    { kelas: "9I", nama: "MUHAMMAD HARYANI", nilaiAwal: 19 },
+    { kelas: "9I", nama: "MUHAMMAD MAULANA", nilaiAwal: 51 },
+    { kelas: "9I", nama: "MUHAMMAD RAMDANI", nilaiAwal: 0 },
+    { kelas: "9I", nama: "NABIL MAULANA AL-M.", nilaiAwal: 0 },
+    { kelas: "9I", nama: "NADYA SHAFIRA ROYANI", nilaiAwal: 0 },
+    { kelas: "9I", nama: "NASYA AULIA FITRI", nilaiAwal: 65 },
+    { kelas: "9I", nama: "REZKY FATHON ROYANI", nilaiAwal: 0 },
+    { kelas: "9I", nama: "RIVAL DIAN S.", nilaiAwal: 0 },
+    { kelas: "9I", nama: "RIAN AL-GIFARI", nilaiAwal: 51 },
+    { kelas: "9I", nama: "ROBIAH ADANIYAH", nilaiAwal: 50 },
+
+    // KELAS 9J
+    { kelas: "9J", nama: "FADILAH RAMADHANI", nilaiAwal: 65 },
+    { kelas: "9J", nama: "FATHIYYA S. M. FAHRI", nilaiAwal: 0 },
+    { kelas: "9J", nama: "ADAM ZIAUL HAQ", nilaiAwal: 65 },
+    { kelas: "9J", nama: "AGIL RIFAN S.", nilaiAwal: 50 },
+    { kelas: "9J", nama: "AHMAD ABIL MUKMIN", nilaiAwal: 65 },
+    { kelas: "9J", nama: "AHMAD GIFA HANDIKA", nilaiAwal: 34 },
+    { kelas: "9J", nama: "AIRA KHAIRUNISA AL-M.", nilaiAwal: 50 },
+    { kelas: "9J", nama: "ANIS KHAIRUN NISA", nilaiAwal: 65 },
+    { kelas: "9J", nama: "ANITA SITI ROMLAH", nilaiAwal: 65 },
+    { kelas: "9J", nama: "ANWAR AHMAD FADILAH", nilaiAwal: 50 },
+    { kelas: "9J", nama: "ANNISA BAZLINA AININ", nilaiAwal: 34 },
+    { kelas: "9J", nama: "ARZALIA PRADANISWARI", nilaiAwal: 50 },
+    { kelas: "9J", nama: "AZKA ADI WAHYUDI", nilaiAwal: 50 },
+    { kelas: "9J", nama: "BAGAS FADILAH ARSAD", nilaiAwal: 65 },
+    { kelas: "9J", nama: "HAURA SAKI VENDRIAN", nilaiAwal: 50 },
+    { kelas: "9J", nama: "M. AFRIZAL FARROS", nilaiAwal: 65 },
+    { kelas: "9J", nama: "M. FAREL OKTAVIAN", nilaiAwal: 35 },
+    { kelas: "9J", nama: "M. KHAIRAN SAFRI H.", nilaiAwal: 35 },
+    { kelas: "9J", nama: "MUHAMMAD FADIL", nilaiAwal: 35 },
+    { kelas: "9J", nama: "MUHAMMAD HASAN", nilaiAwal: 0 },
+    { kelas: "9J", nama: "MUHAMMAD KURNIAWA", nilaiAwal: 0 },
+    { kelas: "9J", nama: "MUHAMMAD HASANUDI", nilaiAwal: 65 },
+    { kelas: "9J", nama: "MUHAMMAD PRATAMA", nilaiAwal: 65 },
+    { kelas: "9J", nama: "MUHAMMAD SOPIAN", nilaiAwal: 65 },
+    { kelas: "9J", nama: "NUR SITA SOLEHA", nilaiAwal: 50 },
+    { kelas: "9J", nama: "NANDINE ALVES FERLI", nilaiAwal: 50 },
+    { kelas: "9J", nama: "NINDIRA MAULANA P.", nilaiAwal: 50 },
+    { kelas: "9J", nama: "RANGGA ANGGARA SAPUTRA", nilaiAwal: 50 },
+    { kelas: "9J", nama: "REVAL ADITYA GUZEL", nilaiAwal: 35 },
+    { kelas: "9J", nama: "RAMADHANI ARIF AULI", nilaiAwal: 65 },
+    { kelas: "9J", nama: "SEPTIAN YULIADI", nilaiAwal: 65 },
+    { kelas: "9J", nama: "SYAFIRA RAMADHANI", nilaiAwal: 35 },
+    { kelas: "9J", nama: "SULTAN AHMAD J.", nilaiAwal: 35 },
+    { kelas: "9J", nama: "SABRINA SHAFIRA A.", nilaiAwal: 65 },
+    { kelas: "9J", nama: "SHAKILA RAHMA R.", nilaiAwal: 50 },
+    { kelas: "9J", nama: "SHELMA AZZAHRA J.", nilaiAwal: 50 }
   ];
 
-  // RAW BANK SOAL INFORMATIKA (Minimal 50 - Sediakan 60 Soal)
-  // Format: ans mengacu pada index array opt (0=A, 1=B, 2=C, 3=D)
+  // BANK SOAL INFORMATIKA SMP (60 SOAL UTUH)
   const rawQuizData = [
-    { id: 1, q: "Sistem bilangan basis 2 yang digunakan oleh komputer adalah sistem...", opt: ["A. Desimal", "B. Biner", "C. Oktal", "D. Heksadesimal"], ans: 1 },
-    { id: 2, q: "Komponen fisik komputer yang dapat disentuh dan dilihat secara langsung disebut...", opt: ["A. Software", "B. Hardware", "C. Brainware", "D. Malware"], ans: 1 },
-    { id: 3, q: "Berikut ini yang merupakan perangkat masukan (input device) adalah...", opt: ["A. Monitor", "B. Printer", "C. Keyboard", "D. Speaker"], ans: 2 }
-    // SILAKAN TEMPELKAN 57 SOAL SISANYA DI SINI
+    { id: 1, q: "Struktur data linear menyusun data secara berurutan sehingga setiap elemen umumnya hanya terhubung dengan elemen sebelum dan...", opt: ["A. Sesudahnya", "B. Sampingnya", "C. Atasnya", "D. Acaknya"], ans: 0 },
+    { id: 2, q: "Struktur data non-linier adalah cara mengatur informasi yang tidak berurutan, melainkan bercabang seperti...", opt: ["A. Antrean kasir", "B. Pohon (Tree) dan Jaringan (Graph)", "C. Tumpukan piring", "D. Daftar lagu"], ans: 1 },
+    { id: 3, q: "Data nonlinier adalah struktur data yang tersusun secara berurutan. Pernyataan tersebut...", opt: ["A. BENAR", "B. SALAH", "C. RAGU-RAGU", "D. TIDAK TAHU"], ans: 1 },
+    { id: 4, q: "Struktur organisasi perusahaan atau laboratorium sekolah termasuk ke dalam kategori struktur data...", opt: ["A. Linier", "B. Non-Linier (Tree)", "C. Stack", "D. Queue"], ans: 1 },
+    { id: 5, q: "Struktur data pohon (Tree) termasuk dalam kategori data non-linier. Pernyataan tersebut...", opt: ["A. SALAH", "B. BENAR", "C. RAGU-RAGU", "D. TIDAK VALID"], ans: 1 },
+    { id: 6, q: "Graf (Graph) adalah contoh dari struktur data non-linier. Pernyataan tersebut...", opt: ["A. SALAH", "B. BENAR", "C. RAGU-RAGU", "D. TIDAK VALID"], ans: 1 },
+    { id: 7, q: "Linked list merupakan salah satu jenis contoh dari struktur data...", opt: ["A. Non-linier", "B. Linier", "C. Acak", "D. Hirarki"], ans: 1 },
+    { id: 8, q: "Karakteristik utama dari struktur data antrean (Queue) di bank atau kasir adalah...", opt: ["A. Data diproses sesuai urutan kedatangan", "B. Data diproses dari yang paling belakang", "C. Data bercabang-cabang", "D. Data diproses secara acak"], ans: 0 },
+    { id: 9, q: "Hubungan pertemanan di media sosial dan persimpangan Google Maps merepresentasikan struktur data...", opt: ["A. Stack", "B. Queue", "C. Graph", "D. Array"], ans: 2 },
+    { id: 10, q: "Urutan kalimat yang benar untuk mendefinisikan Data Linier adalah...", opt: ["A. Data linier adalah struktur data yang tersusun secara berurutan", "B. Struktur data adalah data linier berurutan secara tersusun", "C. Data tersusun berurutan secara adalah linier struktur data", "D. Secara berurutan tersusun data linier adalah struktur data"], ans: 0 },
+    { id: 11, q: "Ciri utama dari struktur data non-linear adalah...", opt: ["A. Elemen tersusun lurus berbaris", "B. Hubungan antar-elemen lebih kompleks dan bercabang/hierarki", "C. Menggunakan prinsip LIFO saja", "D. Hanya bisa menyimpan satu data"], ans: 1 },
+    { id: 12, q: "Struktur data linier menyusun data secara berurutan, contohnya adalah...", opt: ["A. Tree dan Graph", "B. Array, Linked List, Stack, dan Queue", "C. Folder dan Subfolder", "D. Peta Google Maps"], ans: 1 },
+    { id: 13, q: "Struktur data non-linier menyusun data secara bercabang atau tingkat, contohnya adalah...", opt: ["A. Array dan Stack", "B. Tree dan Graph", "C. Queue dan Linked List", "D. Daftar Belanja"], ans: 1 },
+    { id: 14, q: "Daftar belanja mingguan yang dicatat dari atas ke bawah menerapkan prinsip struktur data...", opt: ["A. Linier", "B. Non-Linier", "C. Graph", "D. Tree"], ans: 0 },
+    { id: 15, q: "Susunan folder dan subfolder di dalam komputer mengadopsi bentuk struktur data...", opt: ["A. Queue", "B. Tree", "C. Stack", "D. Array"], ans: 1 },
+    { id: 16, q: "Urutan gerbong pada kereta api yang tersusun dari depan ke belakang menggambarkan konsep...", opt: ["A. Struktur Data Non-Linier", "B. Struktur Data Linier", "C. Graph", "D. Tree"], ans: 1 },
+    { id: 17, q: "Struktur data yang satu elemennya dapat terhubung ke LEBIH DARI satu elemen lainnya adalah...", opt: ["A. Array", "B. Non-Linier", "C. Queue", "D. Stack"], ans: 1 },
+    { id: 18, q: "Dua cara utama untuk mengatur data dalam komputer adalah...", opt: ["A. Input dan Output", "B. Linier dan Non-Linier", "C. Hardware dan Software", "D. Biner dan Desimal"], ans: 1 },
+    { id: 19, q: "Chat pada aplikasi WhatsApp yang disusun berurutan berdasarkan waktu masuk pesan memakai konsep...", opt: ["A. Data Linier", "B. Tree", "C. Graph", "D. Data Acak"], ans: 0 },
+    { id: 20, q: "Situs web seperti Wikipedia yang halaman-halamannya saling terhubung melalui tautan (hyperlink) menerapkan struktur...", opt: ["A. Array", "B. Graph", "C. Queue", "D. Stack"], ans: 1 },
+    { id: 21, q: "Memecah masalah besar menjadi beberapa bagian kecil yang lebih mudah dianalisis disebut...", opt: ["A. Abstraksi", "B. Dekomposisi (Decomposition)", "C. Pengenalan Pola", "D. Algoritma"], ans: 1 },
+    { id: 22, q: "Disebuah perpustakaan, masalah antrean dipecah menjadi: pencatatan identitas, pencarian buku, dan transaksi. Mengapa ini disebut dekomposisi?", opt: ["A. Karena masalah dihilangkan", "B. Karena masalah besar dibagi menjadi bagian-bagian kecil yang lebih mudah dianalisis", "C. Karena semua informasi digunakan sekaligus", "D. Karena langkahnya diulang-ulang"], ans: 1 },
+    { id: 23, q: "Dalam menghitung total biaya wisata, kelompok membagi tugas: transportasi, tiket, dan konsumsi. Langkah selanjutnya yang paling logis adalah...", opt: ["A. Menghapus data", "B. Menggabungkan hasil setiap bagian untuk memperoleh total biaya", "C. Menghitung ulang transportasi saja", "D. Menghapus perhitungan"], ans: 1 },
+    { id: 24, q: "Sekolah ingin mengetahui siswa yang terlambat lebih dari 3 kali. Langkah yang PALING TIDAK RELEVAN adalah...", opt: ["A. Mengumpulkan data kehadiran", "B. Menghitung jumlah keterlambatan", "C. Menentukan warna favorit setiap siswa", "D. Membandingkan data dengan batas 3 kali"], ans: 2 },
+    { id: 25, q: "Perhatikan pola bilangan: 6 -> 13, 8 -> 17. Jika pola sama (dikali 2 ditambah 1), maka untuk 10 -> ...", opt: ["A. 19", "B. 20", "C. 21", "D. 22"], ans: 2 },
+    { id: 26, q: "Jumlah kursi aula: Baris 1 = 6, Baris 2 = 9, Baris 3 = 12, Baris 4 = 15. Jumlah kursi pada Baris ke-8 adalah...", opt: ["A. 24", "B. 27", "C. 30", "D. 33"], ans: 1 },
+    { id: 27, q: "Perhatikan urutan pola angka: 1, 2, 4, 7, 11, 16, ... Angka berikutnya adalah...", opt: ["A. 20", "B. 21", "C. 22", "D. 23"], ans: 2 },
+    { id: 28, q: "Robot bergerak: 2 maju -> 1 kanan, 3 maju -> 1 kanan, 4 maju -> 1 kanan. Setelah 1 langkah kanan berikutnya, robot bergerak...", opt: ["A. 4 langkah maju", "B. 5 langkah maju", "C. 6 langkah maju", "D. 7 langkah maju"], ans: 1 },
+    { id: 29, q: "Proses membuang/mengabaikan informasi yang tidak relevan dan fokus pada informasi penting saja disebut...", opt: ["A. Dekomposisi", "B. Abstraksi", "C. Algoritma", "D. Generalisasi"], ans: 1 },
+    { id: 30, q: "Untuk menentukan diskon berdasarkan JUMLAH BARANG yang dibeli, informasi yang paling penting dipertahankan adalah...", opt: ["A. Jumlah barang", "B. Warna barang", "C. Merek barang", "D. Bentuk kemasan"], ans: 0 },
+    { id: 31, q: "Dalam membuat peta rute tercepat menuju sekolah, informasi yang paling penting adalah...", opt: ["A. Nama toko dan warna bangunan", "B. Nama jalan, jarak, dan persimpangan", "C. Jumlah kendaraan yang lewat", "D. Warna cat pagar rumah"], ans: 1 },
+    { id: 32, q: "Jika sistem menentukan predikat tuntas siswa HANYA berdasarkan Nilai (minimal 75), data yang harus dipertahankan adalah...", opt: ["A. Tinggi badan", "B. Hobi", "C. Nilai", "D. Ukuran sepatu"], ans: 2 },
+    { id: 33, q: "Algoritma: Masukkan nilai. Jika Nilai >= 75 -> 'A', jika 60 <= Nilai < 75 -> 'B', jika Nilai < 60 -> 'C'. Jika input = 70, keluarannya...", opt: ["A. A", "B. B", "C. C", "D. Tidak ada keluaran"], ans: 1 },
+    { id: 34, q: "Langkah logis untuk menentukan bilangan terbesar dari tiga bilangan (A, B, C) adalah...", opt: ["A. Membandingkan A dengan B, lalu hasil perbandingannya dibandingkan dengan C", "B. Menjumlahkan ketiga bilangan", "C. Membandingkan A dengan C saja", "D. Memilih bilangan pertama"], ans: 0 },
+    { id: 35, q: "Algoritma: Masukkan angka X -> Kalikan 2 -> Tambahkan 5 -> Tampilkan hasil. Jika input X = 7, hasil keluarannya adalah...", opt: ["A. 14", "B. 17", "C. 19", "D. 24"], ans: 2 },
+    { id: 36, q: "Prosedur penjumlahan berulang (1+2+3+4+5) dapat disederhanakan menggunakan perulangan (looping) karena...", opt: ["A. Setiap angka berbeda", "B. Terdapat langkah yang dilakukan berulang dengan pola tertentu", "C. Semua angka bernilai genap", "D. Agar angka hilang"], ans: 1 },
+    { id: 37, q: "Algoritma: Jika Nilai >= 80 -> 'Sangat Baik', jika Nilai >= 70 -> 'Baik', jika Nilai < 70 -> 'Perlu Bimbingan'. Jika nilai = 85, hasilnya...", opt: ["A. Sangat Baik", "B. Baik", "C. Perlu Bimbingan", "D. Sangat Baik dan Baik"], ans: 0 },
+    { id: 38, q: "Urutan langkah-langkah yang logis dan terstruktur untuk menyelesaikan suatu masalah disebut...", opt: ["A. Dekomposisi", "B. Algoritma", "C. Logika Biner", "D. Hardware"], ans: 1 },
+    { id: 39, q: "Mengelompokkan kendaraan berdasarkan jumlah rodanya dengan mengabaikan warna dan mereknya adalah contoh penerapan...", opt: ["A. Abstraksi", "B. Dekomposisi", "C. Enkapsulasi", "D. Pengurutan"], ans: 0 },
+    { id: 40, q: "Kemampuan berpikir untuk menyelesaikan masalah secara sistematis dengan menerapkan konsep ilmu komputer disebut...", opt: ["A. Computational Thinking", "B. Critical Thinking", "C. Creative Thinking", "D. Design Thinking"], ans: 0 },
+    { id: 41, q: "Cara sistematis untuk menyimpan dan mengelola data di dalam komputer disebut...", opt: ["A. Struktur Data", "B. LIFO", "C. FIFO", "D. Pemrograman"], ans: 0 },
+    { id: 42, q: "Berikut ini yang merupakan jenis-jenis dari struktur data adalah...", opt: ["A. Array, List, Stack, Queue, Tree, dan Graph", "B. Hardware, Software, Brainware", "C. CPU, RAM, Harddisk", "D. Windows, Linux, Android"], ans: 0 },
+    { id: 43, q: "Struktur data non-linier yang menyimpan data dalam bentuk struktur hierarki/bertingkat adalah...", opt: ["A. Queue", "B. Stack", "C. Tree (Pohon)", "D. Array"], ans: 2 },
+    { id: 44, q: "Struktur data non-linier yang menyimpan data berupa hubungan antar-elemen (node) yang saling terhubung secara fleksibel adalah...", opt: ["A. Tree", "B. Graph", "C. Queue", "D. Stack"], ans: 1 },
+    { id: 45, q: "Struktur data linier statis yang menyimpan data pada lokasi memori yang berurutan/berdekatan adalah...", opt: ["A. Array", "B. Linked List", "C. Stack", "D. Tree"], ans: 0 },
+    { id: 46, q: "Struktur data linier dinamis yang elemen-elemennya terhubung menggunakan pointer disebut...", opt: ["A. Linked List", "B. Array", "C. Graph", "D. Tree"], ans: 0 },
+    { id: 47, q: "Struktur data yang bekerja menggunakan prinsip LAST IN, FIRST OUT (LIFO) adalah...", opt: ["A. Queue", "B. Stack", "C. Array", "D. Linked List"], ans: 1 },
+    { id: 48, q: "Struktur data yang bekerja menggunakan prinsip FIRST IN, FIRST OUT (FIFO) adalah...", opt: ["A. Stack", "B. Queue", "C. Tree", "D. Graph"], ans: 1 },
+    { id: 49, q: "Prinsip LIFO pada Stack memiliki arti...", opt: ["A. Data pertama masuk adalah yang pertama keluar", "B. Data terakhir masuk adalah yang pertama keluar", "C. Data diacak secara otomatis", "D. Data disusun berdasarkan abjad"], ans: 1 },
+    { id: 50, q: "Prinsip FIFO pada Queue memiliki arti...", opt: ["A. Data pertama masuk adalah yang pertama keluar", "B. Data terakhir masuk adalah yang pertama keluar", "C. Data dihapus dari tengah", "D. Data diputar berulang kali"], ans: 0 },
+    { id: 51, q: "Fitur 'UNDO' dan 'REDO' pada aplikasi edit dokumen (seperti MS Word) menerapkan konsep struktur data...", opt: ["A. Queue", "B. Stack (LIFO)", "C. Graph", "D. Tree"], ans: 1 },
+    { id: 52, q: "Aktivitas mengambil piring paling atas dari tumpukan piring di meja makan menerapkan prinsip...", opt: ["A. FIFO (Queue)", "B. LIFO (Stack)", "C. Tree", "D. Graph"], ans: 1 },
+    { id: 53, q: "Aktivitas antrean pembeli yang menunggu giliran di kasir supermarket menerapkan prinsip...", opt: ["A. FIFO (Queue)", "B. LIFO (Stack)", "C. Hierarki", "D. Acak"], ans: 0 },
+    { id: 54, q: "Salah satu kelebihan utama dari struktur data Tree adalah...", opt: ["A. Proses pencarian data hirarkis dapat dilakukan secara cepat dan terorganisir", "B. Membutuhkan memori paling sedikit", "C. Sangat mudah dibuat tanpa aturan", "D. Tidak memiliki cabang"], ans: 0 },
+    { id: 55, q: "Istilah elemen paling atas pada struktur data Stack tempat menambah dan mengambil data disebut...", opt: ["A. Top", "B. Root", "C. Tail", "D. Node"], ans: 0 },
+    { id: 56, q: "Node paling atas pada struktur data Tree yang menjadi induk dari seluruh cabang disebut...", opt: ["A. Leaf", "B. Root (Akar)", "C. Branch", "D. Edge"], ans: 1 },
+    { id: 57, q: "Kumpulan titik (node/vertex) yang dihubungkan oleh garis (edge) merupakan definisi dari...", opt: ["A. Graph", "B. Array", "C. Stack", "D. Queue"], ans: 0 },
+    { id: 58, q: "Singkatan dari FIFO adalah...", opt: ["A. First In, First Out", "B. Fast In, Fast Out", "C. Final In, First Out", "D. First In, Final Out"], ans: 0 },
+    { id: 59, q: "Singkatan dari LIFO adalah...", opt: ["A. Long In, First Out", "B. Last In, First Out", "C. Last In, Fast Out", "D. Level In, First Out"], ans: 1 },
+    { id: 60, q: "Denah rute jalan raya dan peta jaringan antar-kota dalam aplikasi navigasi menggunakan jenis struktur data...", opt: ["A. Stack", "B. Queue", "C. Graph", "D. Array"], ans: 2 }
   ];
 
   // =========================================================================
-  // APP STATE
+  // APP STATE & LOGIC
   // =========================================================================
   let currentStudent = null;
-  let quizQuestions = []; // 50 soal hasil acak
-  let userAnswers = {};   // { indexSoal: indexOpsiDipilih }
+  let quizQuestions = [];
+  let userAnswers = {};
   let currentQuestionIdx = 0;
   let timerInterval = null;
   let timeRemaining = WAKTU_KUIS_MENIT * 60;
   let violationCount = 0;
 
-  // =========================================================================
-  // INITIALIZATION & AUTH LOGIC
-  // =========================================================================
   window.onload = function() {
     populateKelasDropdown();
     checkLocalStorageOnLoad();
@@ -466,9 +717,6 @@
     }
   }
 
-  // =========================================================================
-  // QUIZ ENGINE (SHUFFLE & LOCAL STORAGE)
-  // =========================================================================
   function shuffleArray(array) {
     let arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -479,29 +727,21 @@
   }
 
   function startQuiz() {
-    // Attempt Fullscreen
     requestFullScreen();
 
-    // Persiapkan Soal (Pick 50 Random & Shuffle Options)
     const shuffledRaw = shuffleArray(rawQuizData).slice(0, TOTAL_SOAL_DIUJI);
     
     quizQuestions = shuffledRaw.map(q => {
-      // Map Opsi bersama status kebenarannya sebelum diacak
       let optionsWithKey = q.opt.map((optText, index) => ({
         text: optText,
         isCorrect: index === q.ans
       }));
-      
       let shuffledOptions = shuffleArray(optionsWithKey);
-      
-      return {
-        q: q.q,
-        options: shuffledOptions
-      };
+      return { q: q.q, options: shuffledOptions };
     });
 
     userAnswers = {};
-    timeRemaining = WAKTU_KWIS_MENIT * 60;
+    timeRemaining = WAKTU_KUIS_MENIT * 60;
     currentQuestionIdx = 0;
     violationCount = 0;
 
@@ -535,7 +775,6 @@
       optionsBox.appendChild(btn);
     });
 
-    // Update Nav buttons
     document.getElementById('btn-prev').style.visibility = currentQuestionIdx === 0 ? 'hidden' : 'visible';
     document.getElementById('btn-next').innerText = currentQuestionIdx === TOTAL_SOAL_DIUJI - 1 ? 'Selesai' : 'Lanjut';
     
@@ -597,9 +836,6 @@
     gridBox.classList.toggle('hidden');
   }
 
-  // =========================================================================
-  // TIMER & LOCAL STORAGE SYSTEM
-  // =========================================================================
   function startTimer() {
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
@@ -653,31 +889,24 @@
     }
   }
 
-  // =========================================================================
-  // FITUR ANTI-CURANG (SECURITY ENGINE)
-  // =========================================================================
   function setupSecurityListeners() {
-    // Disable Menu Klik Kanan, Cut, Copy, Paste, Selection
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('copy', e => e.preventDefault());
     document.addEventListener('paste', e => e.preventDefault());
     document.addEventListener('cut', e => e.preventDefault());
     document.addEventListener('selectstart', e => e.preventDefault());
 
-    // Prevent F12 / DevTools Shortcut
     document.addEventListener('keydown', e => {
       if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
         e.preventDefault();
       }
     });
 
-    // Deteksi Fokus & Tab Switch
     window.addEventListener('blur', triggerViolation);
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) triggerViolation();
     });
 
-    // Deteksi Fullscreen change
     document.addEventListener('fullscreenchange', () => {
       if (!document.fullscreenElement && !document.getElementById('quiz-screen').classList.contains('hidden')) {
         triggerViolation();
@@ -694,14 +923,13 @@
   }
 
   function triggerViolation() {
-    // Jalankan hanya jika kuis sedang aktif
     if (document.getElementById('quiz-screen').classList.contains('hidden')) return;
 
     violationCount++;
     saveStateToLocalStorage();
 
     if (violationCount >= 2) {
-      alert("Anda telah melanggar aturan keamanan kuis sebanyak 2 kali. System akan otomatis mengirimkan jawaban Anda!");
+      alert("Anda telah melanggar aturan keamanan kuis sebanyak 2 kali. Sistem akan otomatis mengirimkan jawaban Anda!");
       submitQuiz(true);
     } else {
       document.getElementById('warning-text').innerText = `Pelanggaran Terdeteksi (${violationCount}/2)! Dilarang berpindah aplikasi, split screen, atau keluar dari fullscreen.`;
@@ -714,9 +942,6 @@
     requestFullScreen();
   }
 
-  // =========================================================================
-  // SUBMISSION & BACKEND INTEGRATION
-  // =========================================================================
   function confirmSubmit() {
     const answeredCount = Object.keys(userAnswers).length;
     if (answeredCount < TOTAL_SOAL_DIUJI) {
@@ -734,7 +959,6 @@
   function submitQuiz(isForceSubmit = false) {
     clearInterval(timerInterval);
 
-    // Hitung Nilai (Skala 0 - 100)
     let correctCount = 0;
     quizQuestions.forEach((q, idx) => {
       const selectedOptionIdx = userAnswers[idx];
@@ -745,7 +969,6 @@
 
     const finalScore = Math.round((correctCount / TOTAL_SOAL_DIUJI) * 100);
 
-    // Tampilkan Screen Hasil Sementara
     document.getElementById('quiz-screen').classList.add('hidden');
     document.getElementById('result-screen').classList.remove('hidden');
     document.getElementById('result-score').innerText = finalScore;
@@ -753,7 +976,6 @@
     const summaryBox = document.getElementById('result-summary');
     summaryBox.innerHTML = `Mengirim data jawaban ke server, mohon tunggu...`;
 
-    // Send Data to Google Apps Script
     const payload = {
       nama: currentStudent.nama,
       kelas: currentStudent.kelas,
@@ -763,12 +985,11 @@
 
     fetch(GAS_WEB_APP_URL, {
       method: 'POST',
-      mode: 'no-cors', // Mencegah blocker CORS pada GAS Web App
+      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
     .then(() => {
-      const isLulusRemedial = finalScore >= KKM;
       const bestScore = Math.max(currentStudent.nilaiAwal, finalScore);
       const finalStatus = bestScore >= KKM ? "LULUS" : "BELUM LULUS";
 
@@ -784,11 +1005,10 @@
         <small>*Data hasil kuis telah berhasil tersimpan di Google Sheets guru.</small>
       `;
 
-      // Clear LocalStorage Selesai Kuis
       localStorage.removeItem('remedial_quiz_state');
     })
     .catch(err => {
-      summaryBox.innerHTML = `Terjadi kesalahan saat menyimpan ke Google Sheets: ${err}. Namun nilai Anda pada sesi ini adalah: <strong>${finalScore}</strong>`;
+      summaryBox.innerHTML = `Terjadi kesalahan saat menyimpan ke Google Sheets: ${err}. Nilai Anda pada sesi ini: <strong>${finalScore}</strong>`;
       localStorage.removeItem('remedial_quiz_state');
     });
   }
