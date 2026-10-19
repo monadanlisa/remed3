@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kuis Remedial Nilai 2 - Informatika SMP</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --success: #10b981;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--card-bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .header {
+      background-color: var(--primary);
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Auth Screen */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    select:disabled {
+      background-color: #f1f5f9;
+    }
+
+    .info-card {
+      background-color: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 16px 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:active {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-primary:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    /* Quiz Screen */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .timer {
+      font-weight: bold;
+      color: var(--danger);
+      background: #fef2f2;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .question-box {
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      text-align: left;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .nav-buttons button {
+      flex: 1;
+    }
+
+    /* Grid Navigation Drawer/Modal */
+    .grid-toggle-btn {
+      background-color: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+      padding: 4px;
+    }
+
+    .grid-item {
+      padding: 8px 0;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .grid-item.answered {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .grid-item.active {
+      border: 2px solid var(--warning);
+    }
+
+    /* Anti-Cheat Overlay */
+    #warning-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
+      color: white;
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 24px;
+    }
+
+    #warning-overlay h2 {
+      color: var(--danger);
+      margin-bottom: 12px;
+    }
+
+    #warning-overlay button {
+      margin-top: 20px;
+      width: auto;
+      padding: 10px 24px;
+    }
+
+    /* Result Screen */
+    .result-box {
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .score-badge {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 12px 0;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .status-badge.lulus {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+
+    .status-badge.gagal {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div class="header">INFORMATIKA SMP</div>
+
+  <!-- 1. SCREEN AUTENTIKASI -->
+  <div id="auth-screen" class="container">
+    <h2 style="font-size: 1.2rem; margin-bottom: 16px; text-align: center;">Remedial Nilai 2</h2>
+    
+    <div class="form-group">
+      <label for="select-kelas">Pilih Kelas:</label>
+      <select id="select-kelas" onchange="onKelasChange()">
+        <option value="">-- Pilih Kelas --</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="select-nama">Pilih Nama Siswa:</label>
+      <select id="select-nama" disabled onchange="onNamaChange()">
+        <option value="">-- Pilih Nama --</option>
+      </select>
+    </div>
+
+    <div id="student-info" class="info-card hidden"></div>
+
+    <button id="btn-start" class="btn-primary" disabled onclick="startQuiz()">Mulai Kuis Remedial</button>
+  </div>
+
+  <!-- 2. SCREEN KUIS -->
+  <div id="quiz-screen" class="container hidden">
+    <div class="quiz-header">
+      <span id="question-progress" style="font-weight: 600; font-size: 0.9rem;">Soal 1 dari 50</span>
+      <div class="timer" id="timer-display">60:00</div>
+    </div>
+
+    <div class="question-box" id="question-text">Loading Soal...</div>
+
+    <div class="options-container" id="options-box"></div>
+
+    <div class="nav-buttons">
+      <button class="btn-primary" style="background:#64748b" id="btn-prev" onclick="prevQuestion()">Kembali</button>
+      <button class="btn-primary" id="btn-next" onclick="nextQuestion()">Lanjut</button>
+    </div>
+
+    <button class="grid-toggle-btn" onclick="toggleGrid()">Navigasi Soal (Grid)</button>
+
+    <div id="grid-box" class="grid-container hidden"></div>
+
+    <button class="btn-primary" style="background: var(--success); margin-top: 20px;" onclick="confirmSubmit()">Selesaikan Kuis</button>
+  </div>
+
+  <!-- 3. SCREEN HASIL -->
+  <div id="result-screen" class="container hidden">
+    <div class="result-box">
+      <h3>Hasil Kuis Remedial</h3>
+      <div id="result-score" class="score-badge">0</div>
+      <div id="result-status" class="status-badge">TIDAK LULUS</div>
+
+      <div class="info-card" id="result-summary" style="margin-top:20px; text-align:left;"></div>
+
+      <button class="btn-primary" style="margin-top: 16px;" onclick="resetToLogin()">Kembali ke Halaman Utama</button>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY PERINGATAN KECURANGAN -->
+<div id="warning-overlay">
+  <h2>PERINGATAN PELANGGARAN!</h2>
+  <p id="warning-text">Anda terdeteksi meninggalkan layar kuis!</p>
+  <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">Kuis akan otomatis tersubmit jika Anda melanggar lagi.</p>
+  <button class="btn-primary" onclick="dismissWarning()">Saya Mengerti</button>
+</div>
+
+<script>
+  // =========================================================================
+  // CONFIG & DATABASE
+  // =========================================================================
+  const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyrqXKIs6Qc7CEl4JguoA9tiDp4Jx2tkek2--QhfWUsU5DSH0Q0TSvegN2x-nDS0GzA/exec"; 
+  const KKM = 82;
+  const TOTAL_SOAL_DIUJI = 50;
+  const WAKTU_KUIS_MENIT = 60;
+
+  // DATA SISWA (Ganti / Tambahkan Data Utuh di Sini)
+  const studentData = [
+    { kelas: "7A", nama: "Ahmad Fauzi", nilaiAwal: 65 },
+    { kelas: "7A", nama: "Budi Santoso", nilaiAwal: 78 },
+    { kelas: "7B", nama: "Citra Dewi", nilaiAwal: 85 } // Contoh siswa yang sudah LULUS
+  ];
+
+  // RAW BANK SOAL INFORMATIKA (Minimal 50 - Sediakan 60 Soal)
+  // Format: ans mengacu pada index array opt (0=A, 1=B, 2=C, 3=D)
+  const rawQuizData = [
+    { id: 1, q: "Sistem bilangan basis 2 yang digunakan oleh komputer adalah sistem...", opt: ["A. Desimal", "B. Biner", "C. Oktal", "D. Heksadesimal"], ans: 1 },
+    { id: 2, q: "Komponen fisik komputer yang dapat disentuh dan dilihat secara langsung disebut...", opt: ["A. Software", "B. Hardware", "C. Brainware", "D. Malware"], ans: 1 },
+    { id: 3, q: "Berikut ini yang merupakan perangkat masukan (input device) adalah...", opt: ["A. Monitor", "B. Printer", "C. Keyboard", "D. Speaker"], ans: 2 }
+    // SILAKAN TEMPELKAN 57 SOAL SISANYA DI SINI
+  ];
+
+  // =========================================================================
+  // APP STATE
+  // =========================================================================
+  let currentStudent = null;
+  let quizQuestions = []; // 50 soal hasil acak
+  let userAnswers = {};   // { indexSoal: indexOpsiDipilih }
+  let currentQuestionIdx = 0;
+  let timerInterval = null;
+  let timeRemaining = WAKTU_KUIS_MENIT * 60;
+  let violationCount = 0;
+
+  // =========================================================================
+  // INITIALIZATION & AUTH LOGIC
+  // =========================================================================
+  window.onload = function() {
+    populateKelasDropdown();
+    checkLocalStorageOnLoad();
+    setupSecurityListeners();
+  };
+
+  function populateKelasDropdown() {
+    const kelasSet = [...new Set(studentData.map(s => s.kelas))];
+    const selectKelas = document.getElementById('select-kelas');
+    selectKelas.innerHTML = '<option value="">-- Pilih Kelas --</option>';
+    kelasSet.forEach(k => {
+      selectKelas.innerHTML += `<option value="${k}">${k}</option>`;
+    });
+  }
+
+  function onKelasChange() {
+    const kelas = document.getElementById('select-kelas').value;
+    const selectNama = document.getElementById('select-nama');
+    const infoCard = document.getElementById('student-info');
+    const btnStart = document.getElementById('btn-start');
+
+    selectNama.innerHTML = '<option value="">-- Pilih Nama --</option>';
+    infoCard.classList.add('hidden');
+    btnStart.disabled = true;
+
+    if (!kelas) {
+      selectNama.disabled = true;
+      return;
+    }
+
+    const filteredStudents = studentData.filter(s => s.kelas === kelas);
+    filteredStudents.forEach(s => {
+      selectNama.innerHTML += `<option value="${s.nama}">${s.nama}</option>`;
+    });
+    selectNama.disabled = false;
+  }
+
+  function onNamaChange() {
+    const kelas = document.getElementById('select-kelas').value;
+    const nama = document.getElementById('select-nama').value;
+    const infoCard = document.getElementById('student-info');
+    const btnStart = document.getElementById('btn-start');
+
+    if (!nama) {
+      infoCard.classList.add('hidden');
+      btnStart.disabled = true;
+      return;
+    }
+
+    currentStudent = studentData.find(s => s.kelas === kelas && s.nama === nama);
+
+    if (currentStudent) {
+      const isLulus = currentStudent.nilaiAwal >= KKM;
+      infoCard.innerHTML = `
+        <strong>Mata Pelajaran:</strong> Informatika SMP<br>
+        <strong>Kategori:</strong> Remedial Nilai 2<br>
+        <strong>Nilai Awal:</strong> ${currentStudent.nilaiAwal}<br>
+        <strong>Target KKM:</strong> ${KKM}<br>
+        <strong>Status Awal:</strong> <span style="color:${isLulus ? 'var(--success)' : 'var(--danger)'}">${isLulus ? 'LULUS KKM' : 'Belum Lulus'}</span>
+      `;
+      infoCard.classList.remove('hidden');
+
+      if (isLulus) {
+        btnStart.disabled = true;
+        btnStart.innerText = "Anda Sudah Lulus KKM";
+      } else {
+        btnStart.disabled = false;
+        btnStart.innerText = "Mulai Kuis Remedial";
+      }
+    }
+  }
+
+  // =========================================================================
+  // QUIZ ENGINE (SHUFFLE & LOCAL STORAGE)
+  // =========================================================================
+  function shuffleArray(array) {
+    let arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function startQuiz() {
+    // Attempt Fullscreen
+    requestFullScreen();
+
+    // Persiapkan Soal (Pick 50 Random & Shuffle Options)
+    const shuffledRaw = shuffleArray(rawQuizData).slice(0, TOTAL_SOAL_DIUJI);
+    
+    quizQuestions = shuffledRaw.map(q => {
+      // Map Opsi bersama status kebenarannya sebelum diacak
+      let optionsWithKey = q.opt.map((optText, index) => ({
+        text: optText,
+        isCorrect: index === q.ans
+      }));
+      
+      let shuffledOptions = shuffleArray(optionsWithKey);
+      
+      return {
+        q: q.q,
+        options: shuffledOptions
+      };
+    });
+
+    userAnswers = {};
+    timeRemaining = WAKTU_KWIS_MENIT * 60;
+    currentQuestionIdx = 0;
+    violationCount = 0;
+
+    saveStateToLocalStorage();
+    initQuizUI();
+  }
+
+  function initQuizUI() {
+    document.getElementById('auth-screen').classList.add('hidden');
+    document.getElementById('quiz-screen').classList.remove('hidden');
+
+    renderQuestion();
+    renderGrid();
+    startTimer();
+  }
+
+  function renderQuestion() {
+    const qData = quizQuestions[currentQuestionIdx];
+    document.getElementById('question-progress').innerText = `Soal ${currentQuestionIdx + 1} dari ${TOTAL_SOAL_DIUJI}`;
+    document.getElementById('question-text').innerText = `${currentQuestionIdx + 1}. ${qData.q}`;
+
+    const optionsBox = document.getElementById('options-box');
+    optionsBox.innerHTML = '';
+
+    qData.options.forEach((opt, idx) => {
+      const isSelected = userAnswers[currentQuestionIdx] === idx;
+      const btn = document.createElement('button');
+      btn.className = `option-btn ${isSelected ? 'selected' : ''}`;
+      btn.innerText = opt.text;
+      btn.onclick = () => selectOption(idx);
+      optionsBox.appendChild(btn);
+    });
+
+    // Update Nav buttons
+    document.getElementById('btn-prev').style.visibility = currentQuestionIdx === 0 ? 'hidden' : 'visible';
+    document.getElementById('btn-next').innerText = currentQuestionIdx === TOTAL_SOAL_DIUJI - 1 ? 'Selesai' : 'Lanjut';
+    
+    updateGridUI();
+  }
+
+  function selectOption(optionIndex) {
+    userAnswers[currentQuestionIdx] = optionIndex;
+    saveStateToLocalStorage();
+    renderQuestion();
+  }
+
+  function nextQuestion() {
+    if (currentQuestionIdx < TOTAL_SOAL_DIUJI - 1) {
+      currentQuestionIdx++;
+      renderQuestion();
+    } else {
+      confirmSubmit();
+    }
+  }
+
+  function prevQuestion() {
+    if (currentQuestionIdx > 0) {
+      currentQuestionIdx--;
+      renderQuestion();
+    }
+  }
+
+  function renderGrid() {
+    const gridBox = document.getElementById('grid-box');
+    gridBox.innerHTML = '';
+    for (let i = 0; i < TOTAL_SOAL_DIUJI; i++) {
+      const item = document.createElement('div');
+      item.id = `grid-item-${i}`;
+      item.className = 'grid-item';
+      item.innerText = i + 1;
+      item.onclick = () => {
+        currentQuestionIdx = i;
+        renderQuestion();
+      };
+      gridBox.appendChild(item);
+    }
+    updateGridUI();
+  }
+
+  function updateGridUI() {
+    for (let i = 0; i < TOTAL_SOAL_DIUJI; i++) {
+      const item = document.getElementById(`grid-item-${i}`);
+      if (!item) continue;
+      
+      item.className = 'grid-item';
+      if (userAnswers[i] !== undefined) item.classList.add('answered');
+      if (i === currentQuestionIdx) item.classList.add('active');
+    }
+  }
+
+  function toggleGrid() {
+    const gridBox = document.getElementById('grid-box');
+    gridBox.classList.toggle('hidden');
+  }
+
+  // =========================================================================
+  // TIMER & LOCAL STORAGE SYSTEM
+  // =========================================================================
+  function startTimer() {
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      timeRemaining--;
+      saveStateToLocalStorage();
+
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = timeRemaining % 60;
+      document.getElementById('timer-display').innerText = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      if (timeRemaining <= 0) {
+        clearInterval(timerInterval);
+        alert("Waktu habis! Kuis akan otomatis tersubmit.");
+        submitQuiz(true);
+      }
+    }, 1000);
+  }
+
+  function saveStateToLocalStorage() {
+    const sessionData = {
+      student: currentStudent,
+      questions: quizQuestions,
+      answers: userAnswers,
+      time: timeRemaining,
+      questionIdx: currentQuestionIdx,
+      violations: violationCount
+    };
+    localStorage.setItem('remedial_quiz_state', JSON.stringify(sessionData));
+  }
+
+  function checkLocalStorageOnLoad() {
+    const saved = localStorage.getItem('remedial_quiz_state');
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        if (confirm(`Ditemukan sesi kuis aktif untuk ${data.student.nama}. Lanjutkan pengerjaan?`)) {
+          currentStudent = data.student;
+          quizQuestions = data.questions;
+          userAnswers = data.answers;
+          timeRemaining = data.time;
+          currentQuestionIdx = data.questionIdx;
+          violationCount = data.violations || 0;
+          initQuizUI();
+        } else {
+          localStorage.removeItem('remedial_quiz_state');
+        }
+      } catch (e) {
+        localStorage.removeItem('remedial_quiz_state');
+      }
+    }
+  }
+
+  // =========================================================================
+  // FITUR ANTI-CURANG (SECURITY ENGINE)
+  // =========================================================================
+  function setupSecurityListeners() {
+    // Disable Menu Klik Kanan, Cut, Copy, Paste, Selection
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('paste', e => e.preventDefault());
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+
+    // Prevent F12 / DevTools Shortcut
+    document.addEventListener('keydown', e => {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+      }
+    });
+
+    // Deteksi Fokus & Tab Switch
+    window.addEventListener('blur', triggerViolation);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) triggerViolation();
+    });
+
+    // Deteksi Fullscreen change
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement && !document.getElementById('quiz-screen').classList.contains('hidden')) {
+        triggerViolation();
+      }
+    });
+  }
+
+  function requestFullScreen() {
+    const doc = document.documentElement;
+    if (doc.requestFullscreen) doc.requestFullscreen().catch(() => {});
+    else if (doc.mozRequestFullScreen) doc.mozRequestFullScreen();
+    else if (doc.webkitRequestFullscreen) doc.webkitRequestFullscreen();
+    else if (doc.msRequestFullscreen) doc.msRequestFullscreen();
+  }
+
+  function triggerViolation() {
+    // Jalankan hanya jika kuis sedang aktif
+    if (document.getElementById('quiz-screen').classList.contains('hidden')) return;
+
+    violationCount++;
+    saveStateToLocalStorage();
+
+    if (violationCount >= 2) {
+      alert("Anda telah melanggar aturan keamanan kuis sebanyak 2 kali. System akan otomatis mengirimkan jawaban Anda!");
+      submitQuiz(true);
+    } else {
+      document.getElementById('warning-text').innerText = `Pelanggaran Terdeteksi (${violationCount}/2)! Dilarang berpindah aplikasi, split screen, atau keluar dari fullscreen.`;
+      document.getElementById('warning-overlay').style.display = 'flex';
+    }
+  }
+
+  function dismissWarning() {
+    document.getElementById('warning-overlay').style.display = 'none';
+    requestFullScreen();
+  }
+
+  // =========================================================================
+  // SUBMISSION & BACKEND INTEGRATION
+  // =========================================================================
+  function confirmSubmit() {
+    const answeredCount = Object.keys(userAnswers).length;
+    if (answeredCount < TOTAL_SOAL_DIUJI) {
+      if (!confirm(`Anda baru menjawab ${answeredCount} dari ${TOTAL_SOAL_DIUJI} soal. Yakin ingin menyelesaikan kuis?`)) {
+        return;
+      }
+    } else {
+      if (!confirm("Yakin ingin menyelesaikan kuis remedial ini?")) {
+        return;
+      }
+    }
+    submitQuiz(false);
+  }
+
+  function submitQuiz(isForceSubmit = false) {
+    clearInterval(timerInterval);
+
+    // Hitung Nilai (Skala 0 - 100)
+    let correctCount = 0;
+    quizQuestions.forEach((q, idx) => {
+      const selectedOptionIdx = userAnswers[idx];
+      if (selectedOptionIdx !== undefined && q.options[selectedOptionIdx].isCorrect) {
+        correctCount++;
+      }
+    });
+
+    const finalScore = Math.round((correctCount / TOTAL_SOAL_DIUJI) * 100);
+
+    // Tampilkan Screen Hasil Sementara
+    document.getElementById('quiz-screen').classList.add('hidden');
+    document.getElementById('result-screen').classList.remove('hidden');
+    document.getElementById('result-score').innerText = finalScore;
+
+    const summaryBox = document.getElementById('result-summary');
+    summaryBox.innerHTML = `Mengirim data jawaban ke server, mohon tunggu...`;
+
+    // Send Data to Google Apps Script
+    const payload = {
+      nama: currentStudent.nama,
+      kelas: currentStudent.kelas,
+      nilaiAwal: currentStudent.nilaiAwal,
+      nilaiRemedial: finalScore
+    };
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Mencegah blocker CORS pada GAS Web App
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      const isLulusRemedial = finalScore >= KKM;
+      const bestScore = Math.max(currentStudent.nilaiAwal, finalScore);
+      const finalStatus = bestScore >= KKM ? "LULUS" : "BELUM LULUS";
+
+      document.getElementById('result-status').innerText = finalStatus;
+      document.getElementById('result-status').className = `status-badge ${bestScore >= KKM ? 'lulus' : 'gagal'}`;
+
+      summaryBox.innerHTML = `
+        <strong>Siswa:</strong> ${currentStudent.nama} (${currentStudent.kelas})<br>
+        <strong>Nilai Awal:</strong> ${currentStudent.nilaiAwal}<br>
+        <strong>Nilai Remedial Ini:</strong> ${finalScore}<br>
+        <strong>Nilai Terbaik (Final):</strong> ${bestScore}<br>
+        <strong>Status Final:</strong> ${finalStatus}<br><br>
+        <small>*Data hasil kuis telah berhasil tersimpan di Google Sheets guru.</small>
+      `;
+
+      // Clear LocalStorage Selesai Kuis
+      localStorage.removeItem('remedial_quiz_state');
+    })
+    .catch(err => {
+      summaryBox.innerHTML = `Terjadi kesalahan saat menyimpan ke Google Sheets: ${err}. Namun nilai Anda pada sesi ini adalah: <strong>${finalScore}</strong>`;
+      localStorage.removeItem('remedial_quiz_state');
+    });
+  }
+
+  function resetToLogin() {
+    location.reload();
+  }
+</script>
+</body>
+</html>
