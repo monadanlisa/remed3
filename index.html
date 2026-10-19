@@ -288,7 +288,7 @@
 
   <!-- 1. SCREEN AUTENTIKASI -->
   <div id="auth-screen" class="container">
-    <h2 style="font-size: 1.2rem; margin-bottom: 16px; text-align: center;">Remedial Nilai 2</h2>
+    <h2 style="font-size: 1.2rem; margin-bottom: 16px; text-align: center;">Remedial Nilai 3</h2>
     
     <div class="form-group">
       <label for="select-kelas">Pilih Kelas:</label>
@@ -363,7 +363,7 @@
   const TOTAL_SOAL_DIUJI = 50;
   const WAKTU_KUIS_MENIT = 60;
 
-  // DATA SISWA LENGKAP KELAS 9D - 9J (Sesuai File Excel NILAI 2.xlsx)
+  // DATA SISWA LENGKAP KELAS 9D - 9J (Sesuai File Excel Nilai 3.xlsx)
   const studentData = [
     { kelas: "9D", nama: "ADAM RAHMAN RAMLI", nilaiAwal: 46 },
     { kelas: "9D", nama: "ADHIRA DWI AZHARI", nilaiAwal: 21 },
@@ -687,7 +687,7 @@
       const isLulus = currentStudent.nilaiAwal >= KKM;
       infoCard.innerHTML = `
         <strong>Mata Pelajaran:</strong> Informatika SMP<br>
-        <strong>Kategori:</strong> Remedial Nilai 2<br>
+        <strong>Kategori:</strong> Remedial Nilai 3<br>
         <strong>Nilai Awal:</strong> ${currentStudent.nilaiAwal}<br>
         <strong>Target KKM:</strong> ${KKM}<br>
         <strong>Status Awal:</strong> <span style="color:${isLulus ? 'var(--success)' : 'var(--danger)'}">${isLulus ? 'LULUS KKM' : 'Belum Lulus'}</span>
